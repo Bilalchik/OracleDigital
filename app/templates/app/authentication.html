@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="login-page">
+        <div class="myform">
+          <h1 class="signup_card"><b>Войти</b></h1>
+          <p class="signup_info">Войдите, если вы уже создали учетную запись</p>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <form class="login-form" method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+              {{form.as_p}}
+              <button class="submit-button" type='submit'><b>Войти</b></button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

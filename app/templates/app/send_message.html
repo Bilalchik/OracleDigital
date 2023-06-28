@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <h1>Отправка сообщения ученикам</h1>
+
+    <form method="post" action="{% url 'send_message' %}">
+        {% csrf_token %}
+        <label for="message">Сообщение:</label><br>
+        <textarea name="message" id="message" rows="5" cols="30"></textarea><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}

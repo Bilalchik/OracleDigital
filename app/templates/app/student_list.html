@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h3>Студенты</h3>
+<br>
+    <form method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control bg-light border-0 small" placeholder="Искать..."
+            aria-label="Search" aria-describedby="basic-addon2" value="{{ request.GET.q }}">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</form>
+
+    <br><br><br>
+  <br>
+    <a style="font-size: 22px;" href="{% url 'student_add' %}">Добавить Студента <i class="fa fa-arrow-right"></i></a>
+<br>
+<br>
+<div id="search-results"></div>
+<style>
+  table, th, td {
+    border: 1px solid black;
+  }
+</style>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th style="text-align: center; margin: 0 10px;" >ФИО</th>
+      <th style="text-align: center; margin: 0 10px;" >Электронная почта</th>
+        <th style="text-align: center; margin: 0 10px;">Дата рождения</th>
+      <th style="text-align: center; margin: 0 10px;" >Класс</th>
+      <th style="text-align: center; margin: 0 10px;" >Адрес</th>
+      <th style="text-align: center; margin: 0 10px;" >Пол</th>
+      <th style="text-align: center; margin: 0 10px;" >Дата создания</th>
+      <th style="text-align: center; margin: 0 10px;" >Дата обновления</th>
+    </tr>
+    {% for student in object_list %}
+    <tr>
+      <td style="text-align: center; margin: 0 10px;"><a href="{% url 'student_detail' student.id %}" >{{ student.full_name }}</a></td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.mail }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.date_of_birth }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.classroom }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.address }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.get_gender_display }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.created_date }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.updated_date }}</td>
+      <td><a href="{% url 'student_delete' student.id %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  <br>
+<br>
+<br>
+{% endblock %}

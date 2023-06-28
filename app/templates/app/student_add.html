@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<center>
+      <h3>Студент</h3>
+  <br>
+    <div class="container" style="width: 25%;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        </div>
+  <div class="container mt-3" style="width: 55%; fon-size: 10px;">
+    <form method="POST" action=".">
+  {% csrf_token %}
+        <div class="row" >
+            <div class="col-6" >
+                {{ form.as_p }}
+            </div>
+        </div>
+<button type="submit">Сохранить</button>
+  </form>
+      </div>
+</center>
+{% endblock %}

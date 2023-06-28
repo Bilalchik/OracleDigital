@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h3>Студент</h3>
+<br>
+<style>
+  table, th, td {
+    border: 1px solid black;
+  }
+</style>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th style="text-align: center; margin: 0 10px;" >ФИО</th>
+      <th style="text-align: center; margin: 0 10px;" >Электронная почта</th>
+        <th style="text-align: center; margin: 0 10px;">Дата рождения</th>
+      <th style="text-align: center; margin: 0 10px;" >Класс</th>
+      <th style="text-align: center; margin: 0 10px;" >Адрес</th>
+      <th style="text-align: center; margin: 0 10px;" >Пол</th>
+      <th style="text-align: center; margin: 0 10px;" >Дата создания</th>
+      <th style="text-align: center; margin: 0 10px;" >Дата обновления</th>
+    </tr>
+    <tr>
+      <td style="text-align: center; margin: 0 10px;"><a href="#" >{{ student.full_name }}</a></td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.mail }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.date_of_birth }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.classroom }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.address }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.get_gender_display }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.created_date }}</td>
+      <td style="text-align: center; margin: 0 10px;" >{{ student.updated_date }}</td>
+      <td><a href="{% url 'student_delete' student.id %}">Удалить</a></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+
+  <h4>Изменить объект</h4><br>
+    <div class="container" style="width: 25%;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        </div>
+  <div class="container mt-3" style="width: 55%; fon-size: 10px;">
+    <form method="POST" action=".">
+  {% csrf_token %}
+        <div class="row" >
+            <div class="col-6" >
+                {{ form.as_p }}
+            </div>
+        </div>
+
+<button type="submit">Сохранить</button>
+  </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <form method="GET" action="{% url 'student_list' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control bg-light border-0 small" placeholder="Искать..."
+                aria-label="Search" aria-describedby="basic-addon2" value="{{ request.GET.q }}">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br><br><br>
+    <h5>{{ user }}</h5>
+    <h5><a href="{% url 'register' %}" style="color: blue;">Регистрация</a></h5><br>
+    <h5><a href="{% url 'auth' %}" style="color: blue;">Войти</a></h5><br>
+    <h5><a href="{% url 'logout' %}" style="color: blue;">Выйти</a></h5><br>
+    <h5><a href="{% url 'student_list' %}" style="color: blue;">Список студентов</a></h5><br>
+    <h5><a href="{% url 'send_message' %}" style="color: blue;">Рассылка для учеников</a></h5>
+{% endblock %}
