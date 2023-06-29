@@ -41,7 +41,7 @@ class Teacher(AbstractUser):
     updated_date = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return str(self.username)
